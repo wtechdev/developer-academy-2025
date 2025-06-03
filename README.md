@@ -1,66 +1,314 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Developer Academy 2025 - Blog con Laravel e Bootstrap
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Progetto di corso per la creazione di un blog completo utilizzando Laravel come backend e Bootstrap per il frontend, con sistema di autenticazione, API REST e pannello di amministrazione.
 
-## About Laravel
+## 🎯 Obiettivi del Corso
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Apprendere i fondamenti di Laravel
+- Implementare un sistema di autenticazione completo
+- Creare CRUD con validation e gestione errori
+- Sviluppare API REST con autenticazione JWT
+- Utilizzare Bootstrap per interfacce responsive
+- Gestire file multimediali con Spatie Media Library
+- Comprendere le best practices dello sviluppo web
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Prerequisiti
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP >= 8.1
+- Composer
+- MySQL/MariaDB
+- Node.js e NPM
+- Git
+- Conoscenze base di HTML, CSS, JavaScript e PHP
 
-## Learning Laravel
+## 🚀 Setup Iniziale del Progetto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Clonazione e Configurazione
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+# Clona il repository
+git clone https://github.com/wtechdev/developer-academy-2025.git
+cd developer-academy-2025
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Copia il file di configurazione
+cp .env.example .env
 
-## Laravel Sponsors
+# Installa le dipendenze PHP
+composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Genera la chiave dell'applicazione
+php artisan key:generate
+```
 
-### Premium Partners
+### 2. Configurazione Database
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Crea un database chiamato `developer_academy_2025` e scegli una delle seguenti opzioni:
 
-## Contributing
+**Opzione A - Con dati di esempio:**
+```bash
+# Importa il dump con dati di test
+mysql -u username -p developer_academy_2025 < database/dump/developer_academy_2025.sql
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Opzione B - Database vuoto:**
+```bash
+# Esegui le migrazioni
+php artisan migrate
+```
 
-## Code of Conduct
+### 3. Configurazione Logging
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Nel file `config/logging.php`, modifica la configurazione per avere log giornalieri:
 
-## Security Vulnerabilities
+```php
+'channels' => [
+    'stack' => [
+        'driver' => 'stack',
+        'channels' => ['daily'],
+        'ignore_exceptions' => false,
+    ],
+    // ...
+],
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🎨 Design e Template
 
-## License
+### Frontend
+- **Template Bootstrap:** [StartBootstrap Blog Home](https://github.com/startbootstrap/startbootstrap-blog-home)
+- **Sistema di paginazione:** Bootstrap 5 integrato con Laravel
+- **Icone:** [Bootstrap Icons](https://github.com/twbs/icons)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Backend (Dashboard)
+- **Template:** [Bootstrap Dashboard Example](https://getbootstrap.com/docs/5.3/examples/dashboard/)
+- **Interfaccia amministrativa** con sidebar e componenti moderni
+
+## 🏗️ Architettura del Progetto
+
+### Modelli e Relazioni
+- **Post:** Modello principale per gli articoli del blog
+- **User:** Modello per la gestione utenti
+- **Relazioni Eloquent:** Configurate tra Post e User (hasMany/belongsTo)
+
+### Layout System
+Il progetto utilizza due sistemi di layout:
+
+1. **Frontend Layout:** Gestito tramite componenti Blade (`components/layout.blade.php`)
+2. **Backend Layout:** Template tradizionale per dashboard e autenticazione
+
+### Componenti Blade
+- `components/navbar.blade.php` - Navigazione frontend
+- `components/dashboardnav.blade.php` - Navigazione backend
+
+## 🔐 Sistema di Autenticazione
+
+### Backend Authentication
+- **Pacchetto:** Laravel UI
+- **Customizzazione:** Override del metodo logout per redirect al login
+- **Protezione:** Middleware auth per le rotte amministrative
+
+### API Authentication
+- **JWT Token:** Implementato con tymondesigns/jwt-auth
+- **Endpoint Login:** `POST /api/login`
+- **Protezione API:** Bearer token per rotte protette
+
+## 📝 CRUD e Gestione Dati
+
+### Controllers Resource
+- `PostController` - Gestione articoli
+- `UserController` - Gestione utenti
+- Utilizzo di rotte resource per operazioni CRUD standard
+
+### Validation
+- `PostRequest` - Validazione form articoli
+- `UserRequest` - Validazione form utenti
+- Gestione errori con try-catch nei metodi store/update
+
+### Soft Delete
+- Implementato per il modello User
+- Possibilità di recupero dati eliminati
+
+## 📷 Gestione Media
+
+### Spatie Media Library
+- Upload e gestione immagini
+- Associazione media ai post
+- Ottimizzazione automatica delle immagini
+
+## 🔧 Comandi Artisan Utilizzati
+
+```bash
+# Componenti
+php artisan make:component layout
+php artisan make:component navbar
+php artisan make:component dashboardnav
+
+# Database
+php artisan make:migration create_post_table
+php artisan migrate
+
+# Controllers
+php artisan make:controller PostController --resource
+php artisan make:controller UserController --resource
+
+# Validation
+php artisan make:request PostRequest
+php artisan make:request UserRequest
+```
+
+## 📦 Pacchetti Installati
+
+- **[Laravel UI](https://github.com/laravel/ui)** - Autenticazione e scaffolding
+- **[Spatie Media Library](https://github.com/spatie/laravel-medialibrary)** - Gestione file multimediali
+- **[JWT Auth](https://github.com/tymondesigns/jwt-auth)** - Autenticazione API
+- **[Laravel Lang](https://github.com/Laravel-Lang/common)** - Traduzione italiana
+
+## 🌐 API Endpoints
+
+### Autenticazione
+```
+POST /api/login?email=user@example.com&password=password
+```
+**Risposta:** Token JWT per le successive chiamate
+
+### Posts API
+```
+GET /api/posts
+```
+**Headers:** `Authorization: Bearer {token}`
+**Risposta:** Lista dei post dell'utente autenticato
+
+## 🎓 Argomenti del Corso
+
+### 1. Introduzione a Laravel
+- Installazione e configurazione
+- Struttura del framework
+- Artisan CLI
+- Routing e Controllers
+
+### 2. Database e Eloquent ORM
+- Migrazioni e Schema Builder
+- Modelli Eloquent
+- Relazioni tra modelli
+- Query Builder
+
+### 3. Autenticazione e Autorizzazione
+- Laravel UI
+- Middleware
+- Policies e Gates
+- Sessioni e Cookie
+
+### 4. Frontend con Blade e Bootstrap
+- Template Blade
+- Componenti riutilizzabili
+- Asset compilation
+- Responsive design
+
+### 5. CRUD Operations
+- Form Handling
+- Validation
+- File Upload
+- Pagination
+
+### 6. API Development
+- RESTful APIs
+- JWT Authentication
+- API Resources
+- Error Handling
+
+### 7. Testing e Debugging
+- Unit Testing
+- Feature Testing
+- Logging
+- Debug Bar
+
+## 🔄 Controllo Versione con Git
+
+### Setup Repository
+```bash
+# Inizializza il repository
+git init
+
+# Aggiungi remote origin
+git remote add origin https://github.com/wtechdev/developer-academy-2025.git
+
+# Primo commit
+git add .
+git commit -m "Initial commit: Laravel blog setup"
+git push -u origin main
+```
+
+### Workflow di Sviluppo
+```bash
+# Crea branch per nuove feature
+git checkout -b feature/user-authentication
+git checkout -b feature/post-crud
+git checkout -b feature/api-endpoints
+
+# Commit delle modifiche
+git add .
+git commit -m "Add user authentication system"
+
+# Merge nel branch main
+git checkout main
+git merge feature/user-authentication
+git push origin main
+```
+
+### Best Practices Git
+- **Commit frequenti** con messaggi descrittivi
+- **Branch per feature** per sviluppo parallelo
+- **Pull requests** per code review
+- **Gitignore** configurato per Laravel (vendor/, .env, storage/logs/)
+
+### Comandi Git Essenziali
+```bash
+# Verifica stato
+git status
+git log --oneline
+
+# Gestione branch
+git branch -a
+git checkout -b new-feature
+
+# Sincronizzazione
+git pull origin main
+git push origin feature-branch
+
+# Rollback
+git reset --hard HEAD~1
+git revert commit-hash
+```
+
+## 🚀 Deploy e Produzione
+
+### Preparazione per il Deploy
+```bash
+# Ottimizzazione
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Asset compilation
+npm run production
+```
+
+### Configurazione Server
+- Apache/Nginx configuration
+- SSL Certificate
+- Database optimization
+- Caching strategies
+
+## 📚 Risorse Aggiuntive
+
+- [Documentazione Laravel](https://laravel.com/docs)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/)
+- [Laravel Best Practices](https://github.com/alexeymezenin/laravel-best-practices)
+- [JWT Auth Documentation](https://jwt-auth.readthedocs.io/)
+
+## 👥 Team
+
+Progetto sviluppato per Developer Academy 2025 - Corso completo di sviluppo web con Laravel e Bootstrap.
+
+---
+
+**Nota:** Questo progetto è a scopo educativo e include esempi pratici di tutte le funzionalità moderne di Laravel.

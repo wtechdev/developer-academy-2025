@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c14f51ef2634e38c81237edeb602e7e",
+    "content-hash": "4099ddb8c2413823fb4f3b9741c0bb4c",
     "packages": [
         {
             "name": "brick/math",
@@ -3514,69 +3514,6 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.8.1"
             },
             "time": "2025-06-01T06:28:46+00:00"
-        },
-        {
-            "name": "rmunate/php2js",
-            "version": "v4.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rmunate/PHP2JS.git",
-                "reference": "d7d62b73202d2ca52ec51564ae95991b5670ae2f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rmunate/PHP2JS/zipball/d7d62b73202d2ca52ec51564ae95991b5670ae2f",
-                "reference": "d7d62b73202d2ca52ec51564ae95991b5670ae2f",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^10.0|^11.0",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.4|^11.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Rmunate\\Php2Js\\Macros\\Php2JsServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-main": "v3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rmunate\\Php2Js\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Raul Mauricio Uñate Castro",
-                    "email": "raulmauriciounate@gmail.com",
-                    "homepage": "https://github.com/rmunate",
-                    "role": "owner"
-                }
-            ],
-            "description": "Effortlessly share PHP Laravel values with external JavaScript files using just one command, thanks to the seamless integration of PHP2JS.",
-            "homepage": "https://github.com/rmunate/PHP2JS",
-            "keywords": [
-                "php2js",
-                "toStrictJS",
-                "tojs"
-            ],
-            "support": {
-                "issues": "https://github.com/rmunate/PHP2JS/issues",
-                "source": "https://github.com/rmunate/PHP2JS/tree/v4.5.1"
-            },
-            "time": "2024-07-15T16:11:22+00:00"
         },
         {
             "name": "spatie/image",
