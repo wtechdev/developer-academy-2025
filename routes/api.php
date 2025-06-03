@@ -34,5 +34,5 @@ Route::group([
     Route::post('user_info', [AuthController::class, 'user_info']);
 });
 
-Route::middleware('auth:api')->post('/posts', [PostController::class, 'index']);
+Route::middleware('auth:api')->get('/posts', [PostController::class, 'index']);
 
