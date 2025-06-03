@@ -39,6 +39,7 @@ class PostController extends Controller
         $field = [
             "title" => "",
             "text" => "",
+            "featured" => 0,
         ];
         $field = array_merge($field, $old);
 
@@ -57,10 +58,19 @@ class PostController extends Controller
     public function store(PostRequest $request): RedirectResponse
     {
         try {
+            $featured = false;
+            if (isset($request->featured)) {
+                $featured = true;
+                $check_featured = Post::where("featured", "=", 1)->exists();
+                if ($check_featured) {
+                    return redirect()->back()->with(["alert" => "Esiste già un post in evidenza"]);
+                }
+            }
             // Creo il post
             $post = Post::create([
                 "title" => $request->title,
                 "text" => $request->text,
+                "featured" => $featured ? 1 : 0,
                 "date" => now(),
                 "user_id" => auth()->user()->id,
             ]);
@@ -107,11 +117,13 @@ class PostController extends Controller
             $field = [
                 "title" => "",
                 "text" => "",
+                "featured" => 0,
             ];
         } else {
             $field = [
                 "title" => $post->title,
                 "text" => $post->text,
+                "featured" => $post->featured,
             ];
         }
 
@@ -135,6 +147,14 @@ class PostController extends Controller
     public function update(PostRequest $request, string $id): RedirectResponse
     {
         try {
+            $featured = false;
+            if (isset($request->featured)) {
+                $featured = true;
+                $check_featured = Post::where("featured", "=", 1)->exists();
+                if ($check_featured) {
+                    return redirect()->back()->with(["alert" => "Esiste già un post in evidenza"]);
+                }
+            }
             $post = Post::findOrFail($id);
             // Se il post NON ha un'immagine E non viene inviata una nuova immagine → ERRORE
             if (!$post->hasMedia('immagine') && !$request->hasFile('image')) {
@@ -142,6 +162,7 @@ class PostController extends Controller
             }
             $post->title = $request->title;
             $post->text = $request->text;
+            $post->featured = $featured ? 1 : 0;
             $post->save();
             if ($request->hasFile('image')) {
                 $filesImmagine = $request->file('image');

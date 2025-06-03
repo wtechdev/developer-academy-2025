@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 @if ($azione=="create")
-                    <form action="{{route($route)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route($route)}}" method="post" enctype="multipart/form-data" autocomplete="off">
                         @else
                             <form action="{{route($route,["post"=>$id_post])}}" method="post"
                                   enctype="multipart/form-data">
@@ -81,7 +81,7 @@
                                     <div class="mb-3 col-12">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="1" name="featured"
-                                                   id="featured">
+                                                   id="featured" @if($campi["featured"] == 1) checked @endif>
                                             <label class="form-check-label" for="featured">
                                                 Post in evidenza <small class="text-muted">(SOLO 1 POST DEVE ESSERE
                                                     SEGNALATO IN EVIDENZA)</small>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Auth::routes(['register' => false]);
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
     Route::resource('post', PostController::class);
+    Route::resource('user', UserController::class);
     Route::delete('post/image/destroy/{post_id}',
         [App\Http\Controllers\PostImageController::class, 'destroy'])->name('post.image.destroy');
 });

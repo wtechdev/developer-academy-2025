@@ -50,7 +50,7 @@
                             </div>
                             <div class="card-body rounded-0">
                                 @foreach($utenti as $utente)
-                                    <div class="card-text d-flex flex-row align-items-center">
+                                    <div class="card-text d-flex flex-row align-items-center justify-content-between">
                                         <div>{{$utente->name}}</div>
                                         <div
                                             class="text-muted small ms-5">({{$utente->email}})
@@ -81,10 +81,11 @@
                             </div>
                             <div class="card-body rounded-0">
                                 @foreach($posts->take(3) as $post)
-                                    <div class="card-text d-flex flex-row align-items-center">
+                                    <div class="card-text d-flex flex-row align-items-center justify-content-between">
                                         <div>{{$post->title}}</div>
                                         <div
-                                            class="text-muted small ms-3">({{$post->data}})
+                                            class="text-muted small ms-3">
+                                            ({{\Carbon\Carbon::parse($post->date)->format("d/m/Y H:i")}})
                                         </div>
                                     </div>
                                 @endforeach
