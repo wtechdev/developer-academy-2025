@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index(): Renderable
     {
-        $posts = Post::orderBy("created_at", "Desc")
+        $posts = Post::with("user")->orderBy("created_at", "Desc")
             ->paginate(self::N_ELEMENT_PAGE);
         return view('post.index')->with([
             "posts" => $posts,
@@ -72,7 +72,7 @@ class PostController extends Controller
                 "text" => $request->text,
                 "featured" => $featured ? 1 : 0,
                 "date" => now(),
-                "user_id" => auth()->user()->id,
+                "user_id" => auth()->user()->id, //Auth::id
             ]);
             // Recupero e inserisco l'immagine nella media gallery
             $filesImmagine = $request->file('image');
@@ -96,7 +96,7 @@ class PostController extends Controller
      */
     public function show(string $id): Renderable
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with("user")->findOrFail($id);
         return view('post.show')->with([
             "post" => $post,
         ]);

@@ -144,6 +144,15 @@ Il progetto utilizza due sistemi di layout:
 - Upload e gestione immagini
 - Associazione media ai post
 - Ottimizzazione automatica delle immagini
+- Creazione link simbolico per rendere disponibili le immagini nel frontend
+
+```bash
+#Linux #Mac
+ln -s ../../storage/app/media mediagallery
+
+#Windows
+mklink /D allegati ..\storage\allegati
+```
 
 ## 🔧 Comandi Artisan Utilizzati
 

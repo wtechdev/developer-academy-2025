@@ -47,9 +47,12 @@
                             <i class="bi bi-calendar4"></i> {{\Carbon\Carbon::parse($post->date)->format("d/m/Y H:i")}}
                         </div>
                         <p class="card-text">{{$post->text}}</p>
-                        <a href="{{$post->getFirstMediaUrl()}}" target="_blank" class="btn btn-secondary btn-sm"><i
-                                class="bi bi-image-fill"></i>
-                            mostra</a>
+                        @if($post->getFirstMediaUrl('immagine'))
+                            <a href="{{$post->getFirstMediaUrl('immagine')}}" target="_blank"
+                               class="btn btn-secondary btn-sm"><i
+                                    class="bi bi-image-fill"></i>
+                                mostra</a>
+                        @endif
                     </div>
                 </div>
             </main>
