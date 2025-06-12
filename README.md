@@ -147,11 +147,12 @@ Il progetto utilizza due sistemi di layout:
 - Creazione link simbolico per rendere disponibili le immagini nel frontend
 
 ```bash
-#Linux #Mac
-ln -s ../../storage/app/media mediagallery
+# Linux e Mac
+# posizionarsi nella cartella public del progetto
+ln -s ../storage/app/media mediagallery
 
-#Windows
-mklink /D allegati ..\storage\allegati
+# Windows
+mklink /D mediagallery ..\storage\app\media
 ```
 
 ## 🔧 Comandi Artisan Utilizzati
